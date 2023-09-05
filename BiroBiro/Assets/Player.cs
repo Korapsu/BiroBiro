@@ -9,6 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
     public float JumpForce;
 
+    public static float points { get; private set; }
+
+    float savedHeight; // a altura perdida ao reposicionar
+    float actualHeight; //  a altura atual tirando o reposicionamento
+
+
     void Start(){
         rig = GetComponent<Rigidbody2D>();
     }
@@ -18,5 +24,10 @@ public class Player : MonoBehaviour
     {
         float Mov = Input.GetAxis("horizontal") * speed;
         rig.velocity = new Vector2(Mov, rig.velocity.y);
+
+        if (rig.velocity.y >= 0 && transform.position.y > actualHeight) {
+            actualHeight = transform.position.y;
+            points = savedHeight + actualHeight;
+        }
     }
 }

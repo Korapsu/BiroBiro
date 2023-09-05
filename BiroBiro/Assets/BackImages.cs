@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BackImages : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] TextMeshProUGUI pointText;
+    [SerializeField] Image BackImage;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] Image[] images;
+
+    void LateUpdate()
     {
-        
+        pointText.text = Player.points.ToString();
+        if (Player.points % 1000 == 0) {
+            int point = (int)Player.points / 1000;
+            BackImage = point < images.Length? images[point] : images[^1];
+        }
     }
 }
