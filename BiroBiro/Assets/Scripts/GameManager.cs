@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     #region collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         wa(collision.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,8 +44,10 @@ public class GameManager : MonoBehaviour
 
     void wa(GameObject collision)
     {
+        if (collision.transform.CompareTag("wall")) return;
+        else if (collision.CompareTag("Player")) SceneManager.LoadScene("jogo");
+
         print(collision.name);
-        if (collision.CompareTag("Player")) SceneManager.LoadScene("jogo");
 
         int randomInt = Random.Range(1, 7);
         if (collision.CompareTag("SpecialPlat") || randomInt > 4){
