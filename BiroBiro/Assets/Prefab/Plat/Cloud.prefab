@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -186630968311921388}
   m_Layer: 0
   m_Name: Cloud
-  m_TagString: SpecialPlat
+  m_TagString: patPlat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

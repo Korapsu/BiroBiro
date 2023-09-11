@@ -13,7 +13,7 @@ public static class SaveSystem
         bi.Serialize(file, PD);
         file.Close();
     }
-    public static PlayerData load(Player player){
+    public static float load(){
         string path = Application.persistentDataPath + "/player.Birola";
         if (File.Exists(path)){
             BinaryFormatter bi = new();
@@ -22,11 +22,11 @@ public static class SaveSystem
             PlayerData PD = bi.Deserialize(file) as PlayerData;
 
             file.Close();
-            return PD;
+            return PD.points;
         }
         else{
             Debug.LogError($"path not found: {path}");
-            return null;
+            return 0;
         }
     }
 }

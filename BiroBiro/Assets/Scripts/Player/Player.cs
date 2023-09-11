@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     Rigidbody2D rig;
     Inputs inputs;
 
@@ -14,9 +16,13 @@ public class Player : MonoBehaviour
     public static float points { get; private set; }
 
     float savedHeight; // a altura perdida ao reposicionar
-    float actualHeight; //  a altura atual tirando o reposicionamento
+    public float actualHeight { get; private set; } //  a altura atual tirando o reposicionamento
 
-
+    private void Awake()
+    {
+        if (instance == null)instance = this;
+        else Destroy(this.gameObject);
+    }
     void Start(){
         rig = GetComponent<Rigidbody2D>();
         inputs = new();
