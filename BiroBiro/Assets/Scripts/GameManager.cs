@@ -42,15 +42,14 @@ public class GameManager : MonoBehaviour
     #region collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        wa(collision.gameObject);
+        createPlat(collision.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        wa(collision.gameObject);
+        createPlat(collision.gameObject);
     }
 
-    void wa(GameObject collision)
+    void createPlat(GameObject collision)
     {
         if (collision.transform.CompareTag("wall")) return;
 
@@ -59,13 +58,9 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("jogo"); 
         }
 
-        print(collision.name);
-
-        int randomInt = Random.Range(1, 7);
-        if (collision.CompareTag("SpecialPlat") || randomInt > 4){
+        if (collision.CompareTag("SpecialPlat")){
             for (int i = 0; i < 3; i++) spawn();
         }
-        else collision.transform.position = newPos();
     }
     #endregion
 

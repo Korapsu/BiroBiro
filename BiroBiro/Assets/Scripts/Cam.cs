@@ -19,8 +19,9 @@ public class Cam : MonoBehaviour
         if (player == null) return;
 
         Vector3 Target = new(0, player.position.y, -10);
-        if (Target.y - transform.position.y > MaxDif) transform.position = Target;
 
-        transform.position = Vector3.Lerp(transform.position, Target, speed * Time.deltaTime);
+        float realSpeed = Target.y - transform.position.y > MaxDif ? speed * 2 : speed;
+
+        transform.position = Vector3.Lerp(transform.position, Target, realSpeed * Time.deltaTime);
     }
 }
