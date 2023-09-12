@@ -1153,12 +1153,12 @@ MonoBehaviour:
   - {fileID: 1067609665347841522, guid: e9b7306ec060fd148ade168c5d3fcc4b, type: 3}
   - {fileID: 1067609665347841522, guid: 6c86677c7b654cd4d966d99c78f6deda, type: 3}
   firstPlatSpawn: 8
-  resetHeith: 0
+  resetHeith: 25
   ActivePlats:
   - {fileID: 923705894}
   HeightDif: 10
   lavaSpeed: 1
-  lavaMultiplier: 0
+  lavaMultiplier: 1
   xRange: {x: -3, y: 3}
   yRange: {x: 1, y: 1.5}
 --- !u!50 &1313526047

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -54,13 +55,14 @@ public class GameManager : MonoBehaviour
         if (collision.transform.CompareTag("wall")) return;
 
         else if (collision.CompareTag("Player")) {
-            if (Player.points > highestScore) SaveSystem.Save(collision.GetComponent<Player>());
+            Player _p = collision.GetComponent<Player>();
+            if (Player.points > highestScore) SaveSystem.Save(_p);
             SceneManager.LoadScene("jogo"); 
         }
 
-        if (collision.CompareTag("SpecialPlat")){
-            for (int i = 0; i < 3; i++) spawn();
-        }
+        for (int i = 0; i < 3; i++) spawn();
+        ActivePlats.Remove(collision);
+        Destroy(collision);
     }
     #endregion
 
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
         Player playerComponent = player.GetComponent<Player>();
 
         while (true) {
-            yield return new WaitForSeconds(15);
+            yield return new WaitForSeconds(5);
             if (player.position.y > resetHeith) {
                 transform.position -= Vector3.up * resetHeith;
                 player.position -= Vector3.up * resetHeith;

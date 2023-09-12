@@ -18,7 +18,7 @@ public class BackImages : MonoBehaviour
         pointText.text = $"{Player.points:000}";
 
         if (Player.points % toDivide == 0) {
-            int point = (int)Player.points / 1000;
+            int point = (int)Player.points / toDivide;
             BackImage.sprite = point < images.Length? images[point] : images[^1];
         }
     }
