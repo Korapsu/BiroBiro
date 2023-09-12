@@ -93,11 +93,15 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(5);
             if (player.position.y > resetHeith) {
                 transform.position -= Vector3.up * resetHeith;
-                player.position -= Vector3.up * resetHeith;
 
-                foreach (GameObject t in ActivePlats)
-                    if (t != null) t.transform.position -= Vector3.up * resetHeith;
-                    else ActivePlats.Remove(t);
+                player.position -= Vector3.up * resetHeith;
+                Camera.main.transform.position -= Vector3.up * resetHeith;
+
+                int _apSize = ActivePlats.Count;
+                for (int i = 0; i < _apSize; i++)
+                {
+                    if (ActivePlats[i] != null) ActivePlats[i].transform.position -= Vector3.up * resetHeith;
+                }  
                 Height -= resetHeith;
                 playerComponent.SaveHeight();
             }

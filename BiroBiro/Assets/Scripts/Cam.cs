@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cam : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] float MaxDif;
+    [SerializeField] float MaxDiff;
 
     Transform player;
 
@@ -17,10 +17,10 @@ public class Cam : MonoBehaviour
     void Update()
     {
         if (player == null) return;
-
         Vector3 Target = new(0, player.position.y, -10);
 
-        float realSpeed = Target.y - transform.position.y > MaxDif ? speed * 2 : speed;
+        float dif = Target.y - transform.position.y;
+        float realSpeed = dif > MaxDiff ? speed * 3 : speed;
 
         transform.position = Vector3.Lerp(transform.position, Target, realSpeed * Time.deltaTime);
     }
