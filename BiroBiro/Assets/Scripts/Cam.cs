@@ -20,7 +20,8 @@ public class Cam : MonoBehaviour
         Vector3 Target = new(0, player.position.y, -10);
 
         float dif = Target.y - transform.position.y;
-        float realSpeed = dif > MaxDiff ? speed * 3 : speed;
+        
+        float realSpeed = dif > MaxDiff ? speed * 2 : speed;
 
         transform.position = Vector3.Lerp(transform.position, Target, realSpeed * Time.deltaTime);
     }
