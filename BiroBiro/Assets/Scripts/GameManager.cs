@@ -8,10 +8,13 @@ public class GameManager : MonoBehaviour
 {
     [Header("Interface")]
     [SerializeField] GameObject[] PlatsPrefabs;
-    [SerializeField] int firstPlatSpawn;
     [SerializeField] float resetHeith;
 
     [SerializeField] List<GameObject> ActivePlats = new();
+
+    [Header("platSpawn")]
+    [SerializeField] int firstPlatSpawn;
+    [SerializeField] int platToSpawn;
 
     [Header("Lava")]
     [SerializeField] float HeightDif;
@@ -56,11 +59,11 @@ public class GameManager : MonoBehaviour
 
         else if (collision.CompareTag("Player")) {
             Player _p = collision.GetComponent<Player>();
-            if (Player.points > highestScore) SaveSystem.Save(_p);
+            if (Player.instance.points > highestScore) SaveSystem.Save(_p);
             SceneManager.LoadScene("jogo"); 
         }
 
-        for (int i = 0; i < 3; i++) spawn();
+        for (int i = 0; i < platToSpawn; i++) spawn();
         ActivePlats.Remove(collision);
         Destroy(collision);
     }

@@ -15,9 +15,9 @@ public class BackImages : MonoBehaviour
 
     void LateUpdate()
     {
-        pointText.text = $"{Player.points:000}";
+        pointText.text = $"{Player.instance.points:000}";
 
-        int Divided = Mathf.FloorToInt(Player.points / toDivide);
+        int Divided = Mathf.FloorToInt(Player.instance.points / toDivide);
 
         BackImage.sprite = Divided < images.Length? images[Divided] : images[^1];
     }

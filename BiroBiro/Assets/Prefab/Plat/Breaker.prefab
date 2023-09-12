@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseValue: 7
-  timeToBreak: 2
+  timeToBreak: 0.3
 --- !u!212 &1067609665347841526
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -665,6 +665,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpSpeed: 12
+  Pimages:
+  - {fileID: 1389582545, guid: 2c54a336391b37c46ba1a7728fe84180, type: 3}
+  - {fileID: 1135669769, guid: 2c54a336391b37c46ba1a7728fe84180, type: 3}
 --- !u!50 &583199741
 Rigidbody2D:
   serializedVersion: 4
@@ -1168,15 +1171,16 @@ MonoBehaviour:
   - {fileID: 1067609665347841522, guid: 3679e026550fbbb488c5223a5bbf6802, type: 3}
   - {fileID: 1067609665347841522, guid: e9b7306ec060fd148ade168c5d3fcc4b, type: 3}
   - {fileID: 1067609665347841522, guid: 6c86677c7b654cd4d966d99c78f6deda, type: 3}
-  firstPlatSpawn: 8
   resetHeith: 25
   ActivePlats:
   - {fileID: 1391635002}
-  HeightDif: 10
+  firstPlatSpawn: 8
+  platToSpawn: 5
+  HeightDif: 15
   lavaSpeed: 1
-  lavaMultiplier: 1
+  lavaMultiplier: 1.5
   xRange: {x: -3, y: 3}
-  yRange: {x: 1, y: 1.5}
+  yRange: {x: 1.3, y: 1.7}
 --- !u!50 &1313526047
 Rigidbody2D:
   serializedVersion: 4
