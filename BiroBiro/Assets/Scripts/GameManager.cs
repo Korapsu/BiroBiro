@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        lavaMultiplier = Player.instance.actualHeight - transform.position.y < HeightDif? 1: 2;
+        lavaMultiplier = Player.instance.actualHeight - transform.position.y < HeightDif? 1: 1 + Player.instance.points / 50;
         float actualSpeed = lavaSpeed * lavaMultiplier;
 
         transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.up, actualSpeed * Time.deltaTime);

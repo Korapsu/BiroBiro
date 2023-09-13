@@ -8,42 +8,38 @@ public class BackImages : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI pointText;
 
+    [Header("Paralax")]
+    [SerializeField] RawImage img;
+    [SerializeField] float _y;
+
+    int lastImage;
+
+    [Header("Image")]
     [SerializeField] int toDivide;
+    [SerializeField] Texture[] images;
 
-    [SerializeField] Sprite[] images;
-
-    float length;
-    float startPos;
-
-    [SerializeField] SpriteRenderer spriteRenderer;
-    Transform Cum;
-
-    float ParalaxEffect;
-
-    void Start()
+    private void Start()
     {
-        Cum = Camera.main.transform;
-
-        startPos = transform.position.y;
-        length = spriteRenderer.size.y;
+        StartCoroutine(pogged());
     }
-
     private void Update()
     {
-        float rePos = Cum.position.y * (1 - ParalaxEffect);
-        float dist = Cum.position.y * ParalaxEffect;
-
-        transform.position = new Vector3(transform.position.y, startPos + dist);
-
-        if (rePos > startPos + length) startPos += length;
-        else if (rePos < startPos - length) startPos -= length;
-    }
-    void LateUpdate()
-    {
+        img.uvRect = new Rect(img.uvRect.position + new Vector2(0, _y) * Time.deltaTime, img.uvRect.size);
         pointText.text = $"{Player.instance.points:000}";
+    }
+    IEnumerator pogged()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5);
 
-        int Divided = Mathf.FloorToInt(Player.instance.points / toDivide);
+            print("pogged");
+            int Divided = Mathf.FloorToInt(Player.instance.points / toDivide);
 
-        spriteRenderer.sprite = Divided < images.Length? images[Divided] : images[^1];
+            if (lastImage != Divided) img.uvRect = new Rect(Vector2.zero, img.uvRect.size);
+
+            img.texture = Divided < images.Length ? images[Divided] : images[^1];
+            lastImage = Divided;
+        }
     }
 }
