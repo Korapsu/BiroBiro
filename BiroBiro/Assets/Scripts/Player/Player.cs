@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite[] Pimages;
     SpriteRenderer spriteRenderer;
 
-    public float points { get; private set; }
+    public static float points;
 
     float savedHeight; // a altura perdida ao reposicionar
     public float actualHeight { get; private set; } //  a altura atual tirando o reposicionamento

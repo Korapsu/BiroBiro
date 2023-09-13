@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     [Header("Interface")]
     [SerializeField] GameObject[] PlatsPrefabs;
+    [SerializeField] GameObject FireBall;
+
     [SerializeField] float resetHeith;
 
     [SerializeField] List<GameObject> ActivePlats = new();
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        lavaMultiplier = Player.instance.actualHeight - transform.position.y < HeightDif? 1: 1 + Player.instance.points / 50;
+        lavaMultiplier = Player.instance.actualHeight - transform.position.y < HeightDif? 1: 1 + Player.points / 50;
         float actualSpeed = lavaSpeed * lavaMultiplier;
 
         transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.up, actualSpeed * Time.deltaTime);
@@ -58,11 +60,10 @@ public class GameManager : MonoBehaviour
         if (collision.transform.CompareTag("wall")) return;
 
         else if (collision.CompareTag("Player")) {
-            Player _p = collision.GetComponent<Player>();
-            if (Player.instance.points > highestScore) SaveSystem.Save(_p);
-            SceneManager.LoadScene("jogo"); 
+            if (Player.points > highestScore) SaveSystem.Save();
+            SceneManager.LoadScene("Death"); 
         }
-
+        if (Player.points > 2200 && Random.Range(0, 3) == 1) spawnFireBall();
         for (int i = 0; i < platToSpawn; i++) spawn();
         ActivePlats.Remove(collision);
         Destroy(collision);
@@ -70,12 +71,22 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region plat
+    void spawnFireBall()
+    {
+        bool right = Random.Range(0, 2) == 1;
+        float side = right ? xRange.x - 2: xRange.y + 2;
+
+        Vector3 pos = new(side , Player.instance.transform.position.y + (Random.Range(-yRange.x, yRange.y) * 2));
+
+        GameObject ball = Instantiate(FireBall, pos, Quaternion.identity);
+        ball.GetComponent<FireBall>().Right = right;
+    }
     void spawn() {
         int randomInt;
         while (true) { 
             randomInt = Random.Range(0, PlatsPrefabs.Length);
             if (PlatsPrefabs[randomInt].CompareTag("patPlat") && 
-                ActivePlats[^1].CompareTag("patPlat")) continue; //
+                ActivePlats[^1].CompareTag("patPlat")) continue; 
             break;
         }
         Vector2 pos = newPos();

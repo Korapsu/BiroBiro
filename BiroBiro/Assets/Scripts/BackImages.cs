@@ -25,7 +25,7 @@ public class BackImages : MonoBehaviour
     private void Update()
     {
         img.uvRect = new Rect(img.uvRect.position + new Vector2(0, _y) * Time.deltaTime, img.uvRect.size);
-        pointText.text = $"{Player.instance.points:000}";
+        pointText.text = $"{Player.points:000}";
     }
     IEnumerator pogged()
     {
@@ -34,12 +34,15 @@ public class BackImages : MonoBehaviour
             yield return new WaitForSeconds(5);
 
             print("pogged");
-            int Divided = Mathf.FloorToInt(Player.instance.points / toDivide);
+            int Divided = Mathf.FloorToInt(Player.points / toDivide);
 
-            if (lastImage != Divided) img.uvRect = new Rect(Vector2.zero, img.uvRect.size);
+            if (lastImage < Divided) { 
+                img.uvRect = new Rect(Vector2.zero, img.uvRect.size);
+                img.texture = Divided < images.Length ? images[Divided] : images[^1];
 
-            img.texture = Divided < images.Length ? images[Divided] : images[^1];
-            lastImage = Divided;
+                lastImage = Divided;
+                toDivide += 25;
+            }
         }
     }
 }

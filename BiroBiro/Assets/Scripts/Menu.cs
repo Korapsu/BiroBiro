@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI Text;
+    [SerializeField] bool MaxOrNew;
     private void Start()
     {
-        Text.text = $"MaxPoints\n{SaveSystem.load():0}";
+        Text.text = MaxOrNew? $"MaxPoints\n{SaveSystem.load():0}" : $"Points:{Player.points:0}";
     }
     public void ToScene(string scene) {
         SceneManager.LoadScene(scene);

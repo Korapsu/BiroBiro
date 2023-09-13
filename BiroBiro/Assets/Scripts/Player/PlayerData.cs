@@ -5,7 +5,8 @@ public class PlayerData
 {
     public float points;
 
-    public PlayerData(Player player) {
-        points = player.points;
+    public PlayerData() {
+        points = Player.points;
+
     }
 }
