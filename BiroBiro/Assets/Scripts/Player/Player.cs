@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rig;
     Inputs inputs;
+    float highScore;
 
     // mov
     [SerializeField] float speed;
@@ -30,6 +32,7 @@ public class Player : MonoBehaviour
         else Destroy(this.gameObject);
     }
     void Start(){
+        highScore = SaveSystem.load();
         rig = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         inputs = new();
@@ -48,6 +51,11 @@ public class Player : MonoBehaviour
             actualHeight = transform.position.y;
             points = savedHeight + actualHeight;
         }
+    }
+    public void Death() {
+        print($"{points} > {highScore}");
+        if (points > highScore) SaveSystem.Save(points);
+        SceneManager.LoadScene("Death");
     }
     void Movement() { 
         float verticalSpeed = rig.velocity.y;

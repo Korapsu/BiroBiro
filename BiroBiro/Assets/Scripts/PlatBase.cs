@@ -12,7 +12,6 @@ public class PlatBase : MonoBehaviour
     protected virtual void Jump(GameObject collision) { 
         if (collision.TryGetComponent(out Rigidbody2D _player)) { 
             _player.AddForce(Vector2.up * increaseValue, ForceMode2D.Impulse);
-            print("jump");
         }
     }
 }

@@ -9,6 +9,6 @@ public class PlatSpike : MonoBehaviour
         Rigidbody2D rig = collision.gameObject.GetComponent<Rigidbody2D>();
 
         if (collision.gameObject.transform.position.y > transform.position.y && rig.velocity.y <= 0)
-            SceneManager.LoadScene("Death");
+            Player.instance.Death();
     }
 }
