@@ -29,7 +29,7 @@ public class FireBall : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Death");
+            Player.instance.Death();
         }
     }
 }

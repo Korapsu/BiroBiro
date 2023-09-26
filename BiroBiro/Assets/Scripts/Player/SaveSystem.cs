@@ -4,12 +4,12 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void Save(){ 
+    public static void Save(float points){ 
         BinaryFormatter bi = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.Birola";
         FileStream file = new(path, FileMode.Create);
 
-        PlayerData PD = new();
+        PlayerData PD = new(points);
         bi.Serialize(file, PD);
         file.Close();
     }

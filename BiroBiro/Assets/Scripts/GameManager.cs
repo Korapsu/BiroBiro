@@ -29,14 +29,12 @@ public class GameManager : MonoBehaviour
 
     float Height;
 
-    float highestScore;
 
     private void Start()
     {
         for (int i = 0; i < firstPlatSpawn; i++) spawn();
 
         StartCoroutine(ResetPosition());
-        highestScore = SaveSystem.load();
     }
     private void Update()
     {
@@ -60,9 +58,9 @@ public class GameManager : MonoBehaviour
         if (collision.transform.CompareTag("wall")) return;
 
         else if (collision.CompareTag("Player")) {
-            if (Player.points > highestScore) SaveSystem.Save();
-            SceneManager.LoadScene("Death"); 
+            Player.instance.Death();
         }
+
         if (Player.points > 2200 && Random.Range(0, 3) == 1) spawnFireBall();
         for (int i = 0; i < platToSpawn; i++) spawn();
         ActivePlats.Remove(collision);
