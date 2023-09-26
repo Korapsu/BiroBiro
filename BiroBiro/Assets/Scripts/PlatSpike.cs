@@ -8,7 +8,7 @@ public class PlatSpike : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player")) return;
         Rigidbody2D rig = collision.gameObject.GetComponent<Rigidbody2D>();
 
-        if (collision.gameObject.transform.position.y > transform.position.y && rig.velocity.y <= 0)
+        if (collision.gameObject.transform.position.y > transform.position.y && rig.velocity.y < 1)
             Player.instance.Death();
     }
 }
