@@ -9,11 +9,12 @@ public static class SaveSystem
         string path = Application.persistentDataPath + "/player.Birola";
         FileStream file = new(path, FileMode.Create);
 
+
         PlayerData PD = new(points);
         bi.Serialize(file, PD);
         file.Close();
     }
-    public static float load(){
+    public static float loadPoints(){
         string path = Application.persistentDataPath + "/player.Birola";
         if (File.Exists(path)){
             BinaryFormatter bi = new();
@@ -27,6 +28,25 @@ public static class SaveSystem
         else{
             Debug.LogError($"path not found: {path}");
             return 0;
+        }
+    }
+    public static string loadName()
+    {
+        string path = Application.persistentDataPath + "/player.Birola";
+        if (File.Exists(path))
+        {
+            BinaryFormatter bi = new();
+            FileStream file = new(path, FileMode.Open);
+
+            PlayerData PD = bi.Deserialize(file) as PlayerData;
+
+            file.Close();
+            return PD.name;
+        }
+        else
+        {
+            Debug.LogError($"path not found: {path}");
+            return "null";
         }
     }
 }

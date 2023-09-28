@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour
     [SerializeField] bool MaxOrNew;
     private void Start()
     {
-        Text.text = MaxOrNew? $"MaxPoints\n{SaveSystem.load():0}" : $"Points:{Player.points:0}";
+        Text.text = MaxOrNew? $"MaxPoints\n{SaveSystem.loadPoints():0}" : $"Points:{Player.points:0}";
     }
     public void ToScene(string scene) {
         SceneManager.LoadScene(scene);

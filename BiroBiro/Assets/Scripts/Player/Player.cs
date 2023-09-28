@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite[] Pimages;
     SpriteRenderer spriteRenderer;
 
+    [SerializeField] ParticleSystem dust;
+
     public static float points;
 
     float savedHeight; // a altura perdida ao reposicionar
@@ -32,7 +34,7 @@ public class Player : MonoBehaviour
         else Destroy(this.gameObject);
     }
     void Start(){
-        highScore = SaveSystem.load();
+        highScore = SaveSystem.loadPoints();
         rig = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         inputs = new();
@@ -76,5 +78,9 @@ public class Player : MonoBehaviour
     public void SaveHeight() {
         savedHeight += actualHeight;
         actualHeight = 0;
+    }
+    public void spawnParticle()
+    {
+        dust.Play();
     }
 }

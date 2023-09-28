@@ -6,11 +6,9 @@ public class PlatCloud : PlatBase
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Jump(collision.gameObject);
-    }
-    protected override void Jump(GameObject collision)
-    {
-        if (collision.TryGetComponent(out Rigidbody2D wa) && wa.velocity.y > 0)
-        base.Jump(collision);
+        if (collision.TryGetComponent(out Rigidbody2D _player) && _player.velocity.y > 0)
+        {
+            Jump(collision.gameObject);
+        }
     }
 }
