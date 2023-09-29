@@ -5945,6 +5945,7 @@ MonoBehaviour:
   - {fileID: 1067609665347841522, guid: e9b7306ec060fd148ade168c5d3fcc4b, type: 3}
   - {fileID: 1067609665347841522, guid: 6c86677c7b654cd4d966d99c78f6deda, type: 3}
   - {fileID: 1067609665347841522, guid: c06ae918c1bfd8046ada6022f343f01f, type: 3}
+  - {fileID: 2749157617413472481, guid: cca2b18e065add942a3f65548bd53c29, type: 3}
   FireBall: {fileID: 2749157617413472481, guid: 7f79928e22015b840a8b9bccf9c110b1, type: 3}
   resetHeith: 25
   ActivePlats:
@@ -6172,7 +6173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointText: {fileID: 899712294}
   img: {fileID: 1712924101}
-  _y: 0.05
+  _y: 0.07
   toDivide: 50
   images:
   - {fileID: 2800000, guid: 4f95eb5ec1fa9524dbcda2f3436fce59, type: 3}

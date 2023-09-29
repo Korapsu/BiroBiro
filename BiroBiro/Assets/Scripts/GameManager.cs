@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
         else if (collision.CompareTag("Player")) {
             Player.instance.Death();
         }
-
         if (Player.points > 2200 && Random.Range(0, 3) == 1) spawnFireBall();
         for (int i = 0; i < platToSpawn; i++) spawn();
         ActivePlats.Remove(collision);
@@ -80,9 +79,11 @@ public class GameManager : MonoBehaviour
         ball.GetComponent<FireBall>().Right = right;
     }
     void spawn() {
-        int randomInt;
+        int randomInt, prefabLength = Player.points > 1200 ? PlatsPrefabs.Length : PlatsPrefabs.Length - 1;
+
         while (true) { 
-            randomInt = Random.Range(0, PlatsPrefabs.Length);
+
+            randomInt = Random.Range(0, prefabLength);
             if (PlatsPrefabs[randomInt].CompareTag("patPlat") && 
                 ActivePlats[^1].CompareTag("patPlat")) continue; 
             break;

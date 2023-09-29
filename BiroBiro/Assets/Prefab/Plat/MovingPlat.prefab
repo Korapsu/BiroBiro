@@ -145,3 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseValue: 7
+  right: 1
+  speed: 3
+  DirectionMax: 2.5

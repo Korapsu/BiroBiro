@@ -6,23 +6,22 @@ public class PlatMove : PlatBase
 {
     float height;
     [SerializeField]bool right = true;
-    [SerializeField] Vector3 Target;
+    [SerializeField] float speed;
+    [SerializeField] float DirectionMax;
 
+    SpriteRenderer spriteRenderer;
+    private void Start()
+    {
+        speed -= Random.Range(-0.5f, 0.5f);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     void Update()
     {
-        if (right)
-        {
-            Target = new Vector3(2.5f, transform.position.y);
-            transform.position = Vector3.Lerp(transform.position, Target, 2 * Time.deltaTime);
-        }
-        else
-        {
-            Target = new Vector3(-2.5f, transform.position.y);
-            transform.position = Vector3.Lerp(transform.position, Target, 2 * Time.deltaTime);
+        float target = right ? -DirectionMax : DirectionMax;
 
-        }
+        transform.position = Vector3.Lerp(transform.position, new Vector3(target, transform.position.y), speed * Time.deltaTime);
 
-        
-        if (transform.position.x == Target.x) right = !right;
+        if (Mathf.Abs(target - transform.position.x) < 0.1f) right = !right;
+        spriteRenderer.flipX = !right;
     }
 }
