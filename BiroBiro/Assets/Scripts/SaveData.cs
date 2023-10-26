@@ -21,6 +21,7 @@ public class SaveData : MonoBehaviour
     }
     public void newName()
     {
+        print("newName");
         int point = Mathf.FloorToInt(SaveSystem.loadPoints());
 
         if (nameInput.IsActive())

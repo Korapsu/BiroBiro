@@ -25,6 +25,7 @@ public class Menu : MonoBehaviour
             if (GUILayout.Button("resetPoints")){
                 print(Player.points);
                 SaveSystem.Save(0);
+                SaveData.PlayerName = "null";
             }
 
             base.OnInspectorGUI();

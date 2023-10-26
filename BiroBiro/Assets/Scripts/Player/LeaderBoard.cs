@@ -6,7 +6,7 @@ using TMPro;
 
 public class LeaderBoard : MonoBehaviour
 {
-    string key = "ee0df4ddc6e7f9001d540d57f7bf18d43ca51ab449f2df3006c84c0d2dcc2e4b";
+    string key = "7cb71f368d516e5e9606863630f8363b338d88923e7c38a17546a95eb058b74f";
     public List<TextMeshProUGUI> names = new();
     public List<TextMeshProUGUI> Points = new();
     private void Start()
@@ -29,7 +29,8 @@ public class LeaderBoard : MonoBehaviour
                 if (score > Mathf.Pow(10, 12)) Points[i].text = $"{score / Mathf.Pow(10, 9):0.0}t";
                 else if (score > Mathf.Pow(10, 9)) Points[i].text = $"{score / Mathf.Pow(10, 9):0.0}b";
                 else if (score > Mathf.Pow(10, 6)) Points[i].text = $"{score / Mathf.Pow(10, 6):0.0}m";
-                else if (score > Mathf.Pow(10, 3)) Points[i].text = $"{score/Mathf.Pow(10, 3):0.0}k";
+                else if (score > Mathf.Pow(10, 3)) Points[i].text = $"{score / Mathf.Pow(10, 3):0.0}k";
+                else Points[i].text = $"{score :0.0}";
 
             }
         });
